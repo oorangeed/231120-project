@@ -74,7 +74,7 @@ router.post("/", async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    // 비밀번호 복호화
+    // 해시값 비교
     if (!user || !(bcrypt.compare(password, user.password))) {
         res.status(400).send({
             errorMessage: "이메일 또는 패스워드가 틀렸습니다.",
